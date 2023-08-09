@@ -29,5 +29,7 @@ router.post('/reset-password', userController.initiatePasswordReset);
 // Reset password
 router.post('/reset-password/:resetToken', userController.resetPassword);
 
+router.put('/promote/:userId', verify, verifyAdmin, userController.promoteToAdmin);
+
 module.exports = router;
 module.exports = router;
