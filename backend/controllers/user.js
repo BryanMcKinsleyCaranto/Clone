@@ -93,6 +93,16 @@ module.exports.login = async(req,res) =>{
   }
 };
 
+module.exports.getProfile =(req,res)=>{
+  return User.findById(req.user.id).then(result=>{
+     
+      result.password = ""
+      return res.send(result)
+    
+    
+  }).catch(err => res.send(err));
+}
+
 
 module.exports.updateUserProfile = async(req,res) =>{
 

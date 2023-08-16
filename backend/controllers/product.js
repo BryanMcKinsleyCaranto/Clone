@@ -88,3 +88,31 @@ module.exports.getProducts = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+module.exports.getAllProducts = (req,res) => {
+    return Product.find({}).then(result=>{
+     
+      return res.send(result)
+    })
+    .catch(err => res.send(err))
+
+}
+module.exports.getSingleProduct = async (req, res) => {
+  try {
+    const productId = req.params.productId;
+
+    // Find the product by its ID
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    // Return the product details
+    return res.status(200).json(product);
+  } catch (error) {
+    console.error('Error while fetching single product:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+

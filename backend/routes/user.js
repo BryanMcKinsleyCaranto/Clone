@@ -13,7 +13,7 @@ router.post('/register', userController.register);
 
 // route for logging in
 router.post('/login', userController.login);
-
+router.get("/details", verify, userController.getProfile)
 // route for user profile
 router.get('/profile', verify, userController.getUserProfile);
 router.put('/profile', verify, userController.updateUserProfile);
